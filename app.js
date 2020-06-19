@@ -1,8 +1,5 @@
 const budgetController = (function() {
 
-
-
-
 })()
 
 ////////////////////
@@ -59,4 +56,13 @@ const controller = (function(budgetCtrl, UICtrl) {
         // display budget on UI
     }
 
+    return {
+        init: () => {
+            console.log('App Started!')
+            setupEventListeners()
+        }
+    }
+
 })(budgetController, UIController)
+
+controller.init()
