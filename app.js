@@ -1,5 +1,17 @@
 const budgetController = (function() {
 
+    const Expense = function(id, description, value) {
+        this.id = id
+        this.description = description
+        this.value = value
+    }
+
+    const Income = function(id, description, value) {
+        this.id = id
+        this.description = description
+        this.value = value
+    }
+
 })()
 
 ////////////////////
@@ -48,7 +60,6 @@ const controller = (function(budgetCtrl, UICtrl) {
     const ctrlAddItem = () => {
         // get input data
         const input = UICtrl.getInput()
-        console.log(input)
 
         // add item to budget controller
         // add item to UI
@@ -58,7 +69,6 @@ const controller = (function(budgetCtrl, UICtrl) {
 
     return {
         init: () => {
-            console.log('App Started!')
             setupEventListeners()
         }
     }
