@@ -22,6 +22,10 @@ const UIController = (function() {
                 description: document.querySelector(domStrings.inputDescription).value,
                 value: document.querySelector(domStrings.inputValue).value 
             }
+        },
+
+        getDomStrings: () => {
+            return domStrings
         }
     }
 
