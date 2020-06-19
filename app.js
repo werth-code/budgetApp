@@ -1,14 +1,7 @@
 const budgetController = (function() {
 
-    const x = 23
 
-    const add = a => x + a
 
-    return {
-        publicTest: function(b) {
-            return add(b)
-        }
-    }
 
 })()
 
@@ -16,7 +9,21 @@ const budgetController = (function() {
 
 const UIController = (function() {
 
-    // code
+    const domStrings = {
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value'
+    }
+
+    return {
+        getInput: ()=> {
+            return {
+                type: document.querySelector(domStrings.inputType).value,
+                description: document.querySelector(domStrings.inputDescription).value,
+                value: document.querySelector(domStrings.inputValue).value 
+            }
+        }
+    }
 
 })() 
 
@@ -24,12 +31,26 @@ const UIController = (function() {
 
 const controller = (function(budgetCtrl, UICtrl) {
 
-    const test = budgetCtrl.publicTest(5)
+    const ctrlAddItem = () => {
+        // get input data
 
-    return {
-        anotherPublic: function() {
-            console.log(test)
-        }
+        const input = UICtrl.getInput()
+        console.log(input)
+
+        // add item to budget controller
+        // add item to UI
+        // calc budget
+        // display budget on UI
+    
     }
+
+    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem)
+
+    document.addEventListener('keypress', event => { 
+        if (event.keyCode === 13 || event.which === 13) {
+            ctrlAddItem()
+        }
+
+    })
 
 })(budgetController, UIController)
