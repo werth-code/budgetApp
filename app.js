@@ -12,8 +12,33 @@ const budgetController = (function() {
         this.value = value
     }
 
+const data = {
+    allItems: {
+        exp: [],
+        inc: [],
+    },
+    totals: {
+        exp: 0,
+        inc: 0,
+    },
+
+}
+
     return {
-         
+        addItem: (type, desc, val) => {
+
+            const newItem;
+            ID = 0;
+
+            if (type === 'exp') {
+                newItem = new Expense(ID, desc, val)
+            } else if (type === 'inc') {
+                newItem = new Income(ID, desc, val)
+            }    
+
+            data.allItems[type].push(newItem)
+            
+        }
     }
 
 })()
