@@ -25,10 +25,17 @@ const data = {
 }
 
     return {
+
         addItem: (type, desc, val) => {
 
-            const newItem;
-            ID = 0;
+            let newItem;
+
+            //Creates new id but allows us to delete old entries. Can this be improved? Unreadable.
+            if (data.allItems[type].length > 0) {
+                ID = data.allItems[type][data.allItems[type].length - 1].id + 1 
+            } else {
+                ID = 0
+            }
 
             if (type === 'exp') {
                 newItem = new Expense(ID, desc, val)
@@ -37,8 +44,14 @@ const data = {
             }    
 
             data.allItems[type].push(newItem)
-            
+            return newItem
+
+        },
+
+        testing: () => {
+            console.log(data)
         }
+
     }
 
 })()
@@ -87,10 +100,14 @@ const controller = (function(budgetCtrl, UICtrl) {
     }
 
     const ctrlAddItem = () => {
+
+        let input, newItem;
         // get input data
-        const input = UICtrl.getInput()
+        input = UICtrl.getInput()
 
         // add item to budget controller
+        newItem = budgetCtrl.addItem(input.type, input.description, input.value)
+
         // add item to UI
         // calc budget
         // display budget on UI
