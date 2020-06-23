@@ -65,6 +65,8 @@ const UIController = (function() {
         inputDescription: '.add__description',
         inputValue: '.add__value',
         inputButton: '.add__btn',
+        incomeContainer: '.income__list',
+        expensesContainer: '.expenses__list'
     }
 
     return {
@@ -77,18 +79,23 @@ const UIController = (function() {
         },
 
         addListItem: (obj, type) => {
-            let html, newHtml;
-            // html placeholder text
+            let html, newHtml, element;
+           
+
             if (type === 'inc') {
+                element = domStrings.incomeContainer
                 html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             } else if (type === 'exp') {
+                element = domStrings.expensesContainer
                 html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             }
-            // Replace placeholder text with our user data
+            
             newHtml = html.replace('%id%', obj.id)
             newHtml = newHtml.replace('%description%', obj.description)
             newHtml = newHtml.replace('%value%', obj.value)
             // insert html into DOM
+
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml)
         },
 
         getDomStrings: () => {
