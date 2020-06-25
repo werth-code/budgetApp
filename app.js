@@ -131,6 +131,7 @@ const controller = (function(budgetCtrl, UICtrl) {
         newItem = budgetCtrl.addItem(input.type, input.description, input.value)
 
         // add item to UI
+        UICtrl.addListItem(newItem, input.type)
         // calc budget
         // display budget on UI
     }
