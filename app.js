@@ -110,6 +110,8 @@ const UIController = (function() {
             fieldsArr.forEach( (current, index, array) => {
                 current.value = ''
             })
+
+            fieldsArr[0].focus()
         },
 
         getDomStrings: () => {
