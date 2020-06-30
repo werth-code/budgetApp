@@ -79,12 +79,13 @@ const UIController = (function() {
         },
 
         addListItem: (obj, type) => {
-            let html, newHtml, element;
+            let html, newHtml, element, fields, fieldsArr;
            
 
-            if (type === 'inc') {
+            if (type === 'inc') { 
                 element = domStrings.incomeContainer
                 html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+
             } else if (type === 'exp') {
                 element = domStrings.expensesContainer
                 html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
@@ -96,10 +97,24 @@ const UIController = (function() {
             // insert html into DOM
 
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml)
+
+        },
+
+        clearFields: () => {
+            //This returns a list - we need it to be an array, so we use Array.prototype.slice.call(fields).
+
+            fields = document.querySelectorAll(domStrings.inputDescription + ', ' + domStrings.inputValue)
+            
+            fieldsArr = Array.prototype.slice.call(fields)
+
+            fieldsArr.forEach( (current, index, array) => {
+                current.value = ''
+            })
         },
 
         getDomStrings: () => {
             return domStrings
+
         },
     }
 
@@ -132,6 +147,8 @@ const controller = (function(budgetCtrl, UICtrl) {
 
         // add item to UI
         UICtrl.addListItem(newItem, input.type)
+        // clear fields
+        UICtrl.clearFields()
         // calc budget
         // display budget on UI
     }
@@ -145,3 +162,7 @@ const controller = (function(budgetCtrl, UICtrl) {
 })(budgetController, UIController)
 
 controller.init()
+
+
+
+// video 83
